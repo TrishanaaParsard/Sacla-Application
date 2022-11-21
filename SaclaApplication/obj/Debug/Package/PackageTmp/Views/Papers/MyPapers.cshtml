@@ -1,0 +1,82 @@
+﻿@model IEnumerable<SaclaApplication.Models.Paper>
+
+@{
+    ViewBag.Title = "MyPapers";
+}
+
+<h2>My Papers</h2>
+
+
+    @if ((string)TempData["Referrer"] == "Create")
+    {
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Paper was submitted
+        </div>
+    }
+
+    @if ((string)TempData["Referrer"] == "Edit")
+    {
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Paper was updated successfully
+        </div>
+    }
+
+    @if ((string)TempData["Referrer"] == "Delete")
+    {
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Paper was deleted successfully
+        </div>
+    }
+
+
+<p>
+    @Html.ActionLink("Submit New Paper", "Create")
+</p>
+<table class="table " style="font-size:16px">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaperDateSubmitted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TopicId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("Delete", "Papers", new { id = item.PaperId }))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaperDateSubmitted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TopicId)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PaperId }, new { @class = "btn btn-warning" })
+
+                    <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this paper?');" />
+                  
+                </td>
+            </tr>
+        }
+    }
+
+    </table>

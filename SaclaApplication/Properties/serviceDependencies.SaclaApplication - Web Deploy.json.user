@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "restored": true,
+      "restoreTime": "2021-06-28T19:01:14.1598529Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-06-28T18:56:29.3752471Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "c3362f6a-5737-4d1f-a8c2-b4097a31d743"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "SaclaApplicationResourceGroup"
+    }
+  }
+}

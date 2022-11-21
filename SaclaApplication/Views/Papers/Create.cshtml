@@ -1,0 +1,64 @@
+﻿@model SaclaApplication.Models.Paper
+
+@{
+    ViewBag.Title = "Submit";
+    List<SelectListItem> Topic = new List<SelectListItem>();
+    Topic.Add(new SelectListItem() { Text = "Data Science", Value = "Data Science" });
+    Topic.Add(new SelectListItem() { Text = "Education", Value = "Education" });
+    Topic.Add(new SelectListItem() { Text = "Human-Computer Interaction", Value = "Human-Computer Interaction" });
+    Topic.Add(new SelectListItem() { Text = "Internet of Things", Value = "Internet of Things" });
+}
+
+<h2>Submit New Paper</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Paper</h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+         
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.PaperTitle)
+                @Html.EditorFor(model => model.PaperTitle, new { htmlAttributes = new { @class = "form-control" } })
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+          
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.PaperAbstract)
+                @Html.TextAreaFor(model => model.PaperAbstract, 10, 40, htmlAttributes: new { @class = "form-control", style = "width: 100%; max-width: 100%;" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.TopicId)
+                @Html.DropDownListFor(m => m.TopicId, Topic, "--Select Topic--", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+
+                <div class="btn btn-default">
+                    @Html.ActionLink("Back to List", "MyPapers")
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
